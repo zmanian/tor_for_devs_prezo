@@ -40,6 +40,168 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+
+				<section>
+					<h1>Tor for Enthusiasts and Developers</h1>
+				</section>
+
+				<section>
+					<h3>Running a Relay</h3>
+					<h3>Running a Bridge</h3>
+					<h3>Running Hidden Services</h3>
+				</section>
+
+				<section>
+					<h3>Running a Relay</h3>
+					<h3>Route traffic for other Tor users</h3>
+				</section>
+
+				<section>
+					<h3>Prereqs</h3>
+					<h3>10 mbps upload/symmetric</h3>
+					<h3>Access to firewall</h3>
+					<h3>Migigations for customer Internet disruptions</h3>
+				</section>
+
+				<section>
+					<h3>Collateral effects of running a Tor relay</h3>
+					<h3>Some subset of internet services block all Tor relays</h3>
+					<h3>Hulu is an example</h3>
+				</section>
+
+				<section>
+					<h3>Ideal Tor Relay</h3>
+					<h3>Reasonably fast symmetric connection</h3>
+					<h3>Ip Address that is dedicated to non-consumer usage</h3>
+				</section>
+
+				<section>
+					<h3>Tor Bridge</h3>
+					<h3>Help users whose Tor usage is blocked access Tor</h3>
+				</section>
+
+				<section>
+					<h3>Ideal Tor Bridge</h3>
+					<h3>Fast symmetrix connection</h3>
+					<h3>Firewall Access</h3>
+					<h3>None of the collateral effects of running a relay</h3>
+				</section>
+
+				<section>
+					<h3>Hidden Services</h3>
+					<h3>Anonymout Internet Servers</h3>
+					<h3>End to End Crypto</h3>
+					<h3>NAT and Firewall Traversal</h3>
+				</section>
+
+				<section>
+					<h3>Easy:SSH</h3>
+					<h3>Easy: Static Site Hosting </h3>
+					<h3>Moderate: Dual hosting</h3>
+					<h3>Advanced: Application development</h3>
+				</section>
+
+
+				<section>
+					<h3>Easy:SSH</h3>
+					<h3>ssh into your home machine through your firewall</h3>
+					<h3>Immune to port scanning</h3>
+				</section>
+
+
+				<section>
+					<h3>Easy:SSH</h3>
+					<code>
+					Host *.onion
+  					Compression Yes
+  					ProxyCommand /bin/nc -xlocalhost:9050 -X5 %h %p
+					</code>
+				<code>
+					HiddenServiceDir /var/lib/tor/ssh_hidden_service/
+					HiddenServicePort 22 127.0.0.1:22
+				</code>
+				</section>
+
+				<section>
+					<h3>Easy:SSH</h3>
+					<code>
+						cat /var/lib/tor/ssh_hidden_service/hostname
+					</code>
+				<code>
+					ssh {your onion}.onion
+				</code>
+				</section>
+
+				<section>
+					<h3>Easy:Static Site Hosting</h3>
+					<h3>Hosting html and output from static site generators like Jekyll</h3>
+					<code>
+						HiddenServiceDir /var/lib/tor/web_hidden_service/
+						HiddenServicePort 80 127.0.0.1:80
+					</code>
+					<code>
+						server {
+							listen   127.0.0.1:80;
+
+							root /var/www/hidden_service/;
+							index index.html index.htm;
+							server_name {your onion hostname}.onion;
+						}
+					</code>
+				</section>
+
+				<section>
+					<h3>Easy:Static Site Hosting</h3>
+					<h3>Hosting html and output from static site generators like Jekyll</h3>
+					<code>
+						HiddenServiceDir /var/lib/tor/web_hidden_service/
+						HiddenServicePort 80 127.0.0.1:80
+					</code>
+					<code>
+						server {
+							listen   127.0.0.1:80;
+
+							root /var/www/hidden_service/;
+							index index.html index.htm;
+							server_name {your onion hostname}.onion;
+						}
+					</code>
+				</section>
+
+				<section>
+					<h3>Moderate:Dual Site Hosting</h3>
+					<h3>Offer a hidden service for your users to existing application</h3>
+					<h3>Easy with nginx as reverse and SSL proxy</h3>
+					<h3>Just add the config above to your sites.</h3>
+					<h3>Onion SSL certs are EV only for the moment</h3>
+				</section>
+
+				<section>
+					<h3>Moderate:Dual Site Hosting</h3>
+					<h3>Examples</h3>
+					<h3>Blockchain.info | https://blockchainbdgpzk.onion/</h3>
+					<h3>Facebook | https://facebookcorewwwi.onion</h3>
+				</section>
+
+				<section>
+					<h3>Avanced:onion application</h3>
+					<h3>Python Library for interacting with Tor proxy:Stem</h3>
+					<h3>Developing directly with SOCKS support is strongly reccomended</h3>
+					<h3>Middleware is enemy. Predicting remote behavior is difficulty</h3>
+
+				</section>
+
+				<section>
+					<h3>Avanced:onion application</h3>
+					<h3>Ensure hostname resolution is resolved via SOCKS not DNS</h3>
+					<h3>Built on top of minimal frameworks like express, sinatra, flask etc.</h3>
+					<h3>The fewer bells and whistles the better</h3>
+
+				</section>
+
+
+
+
 				<section>
 					<h1>Reveal.js</h1>
 					<h3>The HTML Presentation Framework</h3>
